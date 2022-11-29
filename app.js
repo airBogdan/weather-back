@@ -4,7 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const helmet = require("helmet");
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var stationsRouter = require('./routes/stations');
@@ -15,7 +16,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-// view engine setup
+// app.use(cors());
+app.use(cors({ origin: '*' }));
+
+// var corsOptions = {
+//   origin: '*',
+//   optionsSuccessStatus: 200
+// }
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
